@@ -2,8 +2,10 @@ import init, { World } from "snake_game";
 
 init().then(_ => {
     const CELL_SIZE = 20;   //单元格大小 10个像素
+    const WORLD_WIDTH = 8;
+    const snakeSpawnIdx = Date.now() % (WORLD_WIDTH * WORLD_WIDTH);
 
-    const world = World.new();
+    const world = World.new(WORLD_WIDTH, snakeSpawnIdx);
     const worldWidth = world.width();
     const canvas = <HTMLCanvasElement> document.getElementById("snake-canvas");
     const ctx = canvas.getContext("2d");
@@ -51,6 +53,7 @@ init().then(_ => {
     }
 
     function update() {
+        const fps = 10;
         setTimeout(() => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             drawWorld();
@@ -58,7 +61,7 @@ init().then(_ => {
             paint();
             //the method takes a callback to invoked before the next repaint
             requestAnimationFrame(update)
-        }, 100)
+        }, 1000 / fps)
     }
 
     paint();
