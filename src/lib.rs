@@ -72,11 +72,12 @@ impl World {
         self.snake.body.len()
     }
 
-    // pub fn snake_cells(&self) -> &Vec<SnakeCell> {
-    //     &self.snake.body
-    // }
     pub fn snake_cells(&self) -> *const SnakeCell {
         self.snake.body.as_ptr()
+    }
+
+    pub fn oopsie(&mut self) {
+        self.snake.body = vec![SnakeCell(2048)];
     }
 
     pub fn update(&mut self) {

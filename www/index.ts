@@ -22,6 +22,10 @@ init().then(wasm => {
         snakeLen
     )
 
+    console.log(snakeCells);
+
+    world.oopsie();
+
     document.addEventListener("keydown", (e) => {
         switch(e.code) {
             case "ArrowUp":
