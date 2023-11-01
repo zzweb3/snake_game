@@ -16,7 +16,11 @@ init().then(wasm => {
 
     const snakeCellPtr = world.snake_cells();
     const snakeLen = world.snake_length();
-    debugger
+    const snakeCells = new Uint32Array(
+        wasm.memory.buffer,
+        snakeCellPtr,
+        snakeLen
+    )
 
     document.addEventListener("keydown", (e) => {
         switch(e.code) {
