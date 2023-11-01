@@ -72,12 +72,10 @@ impl World {
         self.snake.body.len()
     }
 
+    //*const is raw pointer
+    //borrowing rules doesn't apply to it (借用规则不支持)
     pub fn snake_cells(&self) -> *const SnakeCell {
         self.snake.body.as_ptr()
-    }
-
-    pub fn oopsie(&mut self) {
-        self.snake.body = vec![SnakeCell(2048)];
     }
 
     pub fn update(&mut self) {
