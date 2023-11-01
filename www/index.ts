@@ -1,6 +1,7 @@
 import init, { World, Direction } from "snake_game";
+import { wasm } from "webpack";
 
-init().then(_ => {
+init().then(wasm => {
     const CELL_SIZE = 20;   //单元格大小 10个像素
     const WORLD_WIDTH = 8;
     const snakeSpawnIdx = Date.now() % (WORLD_WIDTH * WORLD_WIDTH);
@@ -12,6 +13,10 @@ init().then(_ => {
 
     canvas.height = worldWidth * CELL_SIZE;
     canvas.width = worldWidth * CELL_SIZE;
+
+    const snakeCellPtr = world.snake_cells();
+    const snakeLen = world.snake_length();
+    debugger
 
     document.addEventListener("keydown", (e) => {
         switch(e.code) {
