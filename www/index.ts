@@ -3,8 +3,8 @@ import { rnd } from "./utils/rnd"
 
 //init() 页面加载时被调用
 init().then(wasm => {
-    const CELL_SIZE = 30;   //单元格大小 10个像素
-    const WORLD_WIDTH = 15;
+    const CELL_SIZE = 20;   //单元格大小 10个像素
+    const WORLD_WIDTH = 30;
     const snakeSpawnIdx = rnd(WORLD_WIDTH * WORLD_WIDTH);
 
     const world = World.new(WORLD_WIDTH, snakeSpawnIdx);
