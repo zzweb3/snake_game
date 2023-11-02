@@ -22,3 +22,12 @@ fn test1() {
     println!("{}", a[2]);
     println!("{}", a[3]);
 }
+
+#[test]
+fn test2() {
+    let a = -2_i32;
+    let b = 64;
+    let c = a.rem_euclid(b);
+
+    println!("c = {}", c);
+}

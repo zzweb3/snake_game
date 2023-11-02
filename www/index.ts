@@ -55,9 +55,11 @@ init().then(wasm => {
             world.snake_length()
         );
 
-        snakeCells.forEach(cellIdx => {
+        snakeCells.forEach((cellIdx, i) => {
             const col = cellIdx % worldWidth;
             const row = Math.floor(cellIdx / worldWidth);
+
+            ctx.fillStyle = i === 0 ? "#7878db" : "#000000";
 
             ctx.beginPath();
 
@@ -78,11 +80,11 @@ init().then(wasm => {
     }
 
     function update() {
-        const fps = 5;
+        const fps = 10;
         setTimeout(() => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             drawWorld();
-            world.update();
+            world.step();
             paint();
             //the method takes a callback to invoked before the next repaint
             requestAnimationFrame(update)
