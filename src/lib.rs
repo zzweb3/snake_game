@@ -15,7 +15,7 @@ pub enum Direction {
     Left
 }
 
-#[derive(Clone)]
+#[derive(Clone, Copy)]
 pub struct SnakeCell(usize);
 
 struct Snake {
@@ -43,6 +43,7 @@ pub struct World {
     size: usize,
     snake: Snake,
     next_cell: Option<SnakeCell>,
+    reward_cell: usize,
 }
 
 #[wasm_bindgen]
@@ -53,11 +54,16 @@ impl World {
             size: width * width,
             snake:  Snake::new(snake_idx, 3),
             next_cell: None,
+            reward_cell: 10,
          }
     }
 
     pub fn width(&self) -> usize {
         self.width
+    }
+
+    pub fn reward_cell(&self) -> usize {
+        self.reward_cell
     }
 
     pub fn size(&self) -> usize {
@@ -89,8 +95,16 @@ impl World {
 
     pub fn step(&mut self) {
         let temp = self.snake.body.clone();
-        let next_cell = self.gen_next_snake_cell(&self.snake.direction);
-        self.snake.body[0] = next_cell;
+
+        match self.next_cell {
+            Some(cell) =>  {
+                self.snake.body[0] = cell;
+                self.next_cell = None;
+            },
+            None => {
+                self.snake.body[0] = self.gen_next_snake_cell(&self.snake.direction);
+            }
+        }
 
         let len = self.snake.body.len();
         for i in 1..len {
