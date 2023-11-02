@@ -42,6 +42,7 @@ pub struct World {
     width: usize,
     size: usize,
     snake: Snake,
+    next_cell: Option<SnakeCell>,
 }
 
 #[wasm_bindgen]
@@ -50,7 +51,8 @@ impl World {
         World { 
             width,
             size: width * width,
-            snake:  Snake::new(snake_idx, 3)
+            snake:  Snake::new(snake_idx, 3),
+            next_cell: None,
          }
     }
 
@@ -71,7 +73,7 @@ impl World {
         if self.snake.body[1].0 == next_cell.0 {
             return;
         }
-
+        self.next_cell = Some(next_cell);
         self.snake.direction = direction;
     }
 

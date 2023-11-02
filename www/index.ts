@@ -80,7 +80,7 @@ init().then(wasm => {
     }
 
     function update() {
-        const fps = 10;
+        const fps = 5;
         setTimeout(() => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             drawWorld();
