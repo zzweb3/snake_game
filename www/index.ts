@@ -73,6 +73,9 @@ init().then(wasm => {
             world.snake_length()
         );
 
+        console.log(snakeCells);
+        debugger
+
         snakeCells.forEach((cellIdx, i) => {
             const col = cellIdx % worldWidth;
             const row = Math.floor(cellIdx / worldWidth);
@@ -99,7 +102,7 @@ init().then(wasm => {
     }
 
     function update() {
-        const fps = 5;
+        const fps = 2;
         //console.log("刷新时间：" + 1000 / fps);
         setTimeout(() => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
