@@ -100,6 +100,7 @@ init().then(wasm => {
 
     function update() {
         const fps = 5;
+        //console.log("刷新时间：" + 1000 / fps);
         setTimeout(() => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             drawWorld();
