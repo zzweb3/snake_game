@@ -16,11 +16,48 @@
                 justify-content: center;
                 flex-direction: column;
             }
+
+            .game-panel {
+                margin-bottom: 20px;
+            }
+
+            .flex {
+                display: flex;
+            }
+
+            .label {
+                font-weight: bold;
+                margin-right: 10px;
+            }
         </style>
     </head>
     <body>
         <div class="content-wrapper">
-            <h1>用Rust编写“贪吃蛇游戏”的第1天</h1>
+            <h1>用Rust编写“贪吃蛇游戏”</h1>
+            <hr>
+            <div class="game-panel">
+                <div class="flex">
+                    <div class="label">
+                        Status:
+                    </div>
+                    <div id="game-status">
+                        None
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="label">
+                        Points:
+                    </div>
+                    <div id="points">
+                        
+                    </div>
+                </div>
+                <div id="flex">
+                    <button id="game-control-btn">
+                        Play
+                    </button>
+                </div>
+            </div>
             <hr>
             <canvas id="snake-canvas"></canvas>
         </div>
