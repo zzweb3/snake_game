@@ -2,8 +2,8 @@ import init, { World, Direction } from "snake_game";
 
 //init() 页面加载时被调用
 init().then(wasm => {
-    const CELL_SIZE = 20;   //单元格大小 10个像素
-    const WORLD_WIDTH = 8;
+    const CELL_SIZE = 30;   //单元格大小 10个像素
+    const WORLD_WIDTH = 15;
     const snakeSpawnIdx = Date.now() % (WORLD_WIDTH * WORLD_WIDTH);
 
     const world = World.new(WORLD_WIDTH, snakeSpawnIdx);
@@ -80,7 +80,7 @@ init().then(wasm => {
     }
 
     function update() {
-        const fps = 10;
+        const fps = 5;
         setTimeout(() => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             drawWorld();
