@@ -25,9 +25,11 @@ fn test1() {
 
 #[test]
 fn test2() {
-    let a = -2_i32;
-    let b = 64;
+    let a = -4_i32;
+    let b = 16;
     let c = a.rem_euclid(b);
+    let d = a % b;
 
     println!("c = {}", c);
+    println!("d = {}", d);
 }

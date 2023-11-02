@@ -1,6 +1,8 @@
 use  wasm_bindgen::prelude::*;
 use wee_alloc::WeeAlloc;
 
+extern crate web_sys;
+
 #[global_allocator]
 static ALLOC: WeeAlloc = WeeAlloc::INIT;
 
@@ -89,16 +91,40 @@ impl World {
 
         return match self.snake.direction {
             Direction::Right => {
-                SnakeCell((row * self.width) + (snake_idx + 1) % self.width)
+                let treshold = (row + 1) * self.width();
+                //行的最后一个元素
+                 if snake_idx + 1 == treshold {
+                    SnakeCell(treshold - self.width)
+                 } else {
+                    SnakeCell(snake_idx + 1)
+                 }
             },
             Direction::Left => {
-                SnakeCell((row * self.width) + (snake_idx - 1) % self.width)
+                let treshold = row * self.width;
+                if snake_idx == treshold {
+                    SnakeCell(treshold + (self.width - 1))
+                } else {
+                    SnakeCell(snake_idx - 1)
+                }
             },
             Direction::Up => {
-                SnakeCell((snake_idx - self.width) % self.size) //第一行再向上移动呢？？？
+                // let a = (snake_idx - self.width) % self.size;
+                // web_sys::console::log_1(&a.to_string().into());
+                // SnakeCell((snake_idx - self.width) % self.size) //第一行再向上移动呢？？？
+                let treshold = snake_idx - (row * self.width);
+                if snake_idx == treshold {
+                    SnakeCell((self.size - self.width) + treshold)
+                } else {
+                    SnakeCell(snake_idx - self.width)
+                }
             },
             Direction::Down => {
-                SnakeCell((snake_idx + self.width) % self.size)
+                let treshold = snake_idx + ((self.width - row) * self.width);
+                if snake_idx + self.width == treshold {
+                    SnakeCell(treshold - ((row + 1) * self.width))
+                } else {
+                    SnakeCell(snake_idx + self.width)
+                }
             },
         };
     }
