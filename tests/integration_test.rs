@@ -29,11 +29,13 @@ fn test2() {
     let mut c = &b;
     let d = b;
 
+    println!("before c: {}", c);
+
     let e = &&100;
     c = e;
 
-    println!("c: {}", c);
     println!("a: {}", a);
+    println!("after c: {}", c);
 
     println!("c: {:p}", c);
     println!("e: {:p}", e);
